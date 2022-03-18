@@ -1,0 +1,65 @@
+@import '~bootstrap/scss/bootstrap';
+/* #a6bb9b martha stewart green goodness */
+/* rgba(212,	175,	55, 1); gold */
+/* $sunglow: rgba(255, 200, 71, 1);
+$midnight-green-eagle-green: rgba(15, 82, 87, 1);
+$glaucous: rgba(108, 128, 239, 1);
+$alice-blue: rgba(241, 243, 249, 1);
+$turquoise-green: rgba(155, 212, 165, 1); */
+
+body{
+  font-family:Poiret One ;
+  background-color: rgba(241, 243, 249, 1);
+}
+
+.startHidden{
+  display:none
+}
+
+.nav-item{
+  
+  color:rgb(42, 34, 87);
+  text-align: center;
+}
+
+.my-nav{
+  background-color: rgba(155, 212, 165, 1);
+}
+
+.pageSection{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.container-fluid {
+    padding-left:0px;
+    padding-right:0px
+}
+
+#landing-banner{
+  font-family:Tangerine;
+  color: black;
+  font-size: 100 px;
+}
+#landing-photo-date{
+  /* position: absolute; */
+  /* z-index: 2; */
+  /* text-align: start; */
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+}
+#schedule-chart{
+  background-color: rgb(213, 205, 192);
+}
+.gridspacer{
+  min-height: 4rem;
+}
+.headerspacer{
+  min-height: 4rem;
+}
+.picspacer{
+  min-height: 2rem;
+}

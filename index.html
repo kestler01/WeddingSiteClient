@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <title>Example</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <!-- Do not add `link` tags-->
+      <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+
+      <!-- Do not add `script` tags-->
+      <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
+      <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
+    </head>
+    <body>
+        <!-- Navbar -->
+        <nav class="navbar-nav nav-fill navbar-expand-md sticky-top justify-content-center my-nav">
+          <button class="nav-item navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation"> A&A </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <!-- <a class="nav-item nav-link active d-none d-md-inline-flex" aria-current="page" href="#">A & A</a> -->
+            <a class="nav-item nav-link active d-md-none" aria-current="page" href="#">Top of page</a>
+      
+            <a class="nav-item nav-link" href="#venue">Venue</a>
+      
+            <a class="nav-item nav-link" href="#program">Program</a>
+      
+            <a class="nav-item nav-link disabled" href="#activities">Other Weekend Activities</a>
+      
+            <!-- button for opening account form modal -->
+            <button type="button" id="sign-up-button" class=" btn nav-item nav-button" data-bs-toggle="modal"
+              data-bs-target="#sign-up-form-modal">sign up</button>
+      
+            <!-- button for opening sign in form modal -->
+            <button type="button" id="sign-in-button" class="btn nav-item nav-button" data-bs-toggle="modal"
+              data-bs-target="#sign-in-form-modal"> sign in</button>
+      
+            <!-- button for opening password change form modal -->
+            <button type="button" id="change-pw-button" class="btn  startHidden nav-item nav-button" data-bs-toggle="modal"
+              data-bs-target="#pw-change-form-modal"> Change Password</button>
+      
+            <!-- Sign out button -->
+            <button id="sign-out-button" class="btn startHidden nav-item nav-button">Sign Out</button>
+            
+            <button id="rsvp-nav-btn" class="btn startHidden nav-item nav-button" data-bs-toggle="modal" data-bs-target="#rsvp-form-modal">RSVP</button>
+      
+            <a class="nav-item nav-link disabled" href="#registry">Registry Info</a>
+          </div>
+        </nav>
+        <!-- modals -->
+        <!-- sign up form modal -->
+        <div class="modal fade" id="sign-up-form-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+          aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Make an Account</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <form id="my-sign-up">
+                <div class="modal-body">
+                  <div id="sign-up-form-message"></div>
+                  <div class="container row">
+                    <label class="col-4">Email</label>
+                    <input class="col-9" name="credentials[email]" type="email">
+                    <label class="col-4">Password</label>
+                    <input class="col-9" name="credentials[password]" type="password">
+                    <label class="col-6">Confirm Password</label>
+                    <input class="col-9" name="credentials[password_confirmation]" type="password">
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="submit" id="sign-up-flip-button" class="btn ">Sign Up</button>
+                  <button id="sign-up-flip-in-button" class="btn startHidden" data-bs-target="#sign-in-form-modal"
+                    data-bs-toggle="modal" data-bs-dismiss="modal">Sign In</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <!-- sign in form modal -->
+        <div class="modal fade" id="sign-in-form-modal" tabindex="-1"
+          aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Sign In</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <form id="sign-in">
+                <p id="sign-in-form-message"></p>
+                <div class="modal-body">
+                  <div class="container row">
+                    <label class="col-4 ">Email</label>
+                    <input class="col-9 " name="credentials[email]" type="email">
+                    <label class="col-4 ">Password</label>
+                    <input class="col-9 " name="credentials[password]" type="password">
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="submit" class="btn" data-dismiss="modal">Sign In</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <!-- change PW form modal -->
+        <div class="modal fade" id="pw-change-form-modal" tabindex="-1" aria-labelledby="change password form"
+          aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Change Password</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <form id="change-password">
+                <div class="modal-body row">
+                  <div class="col-9" id="pw-change-message-field"></div>
+                  <label class="col-6">Old Password</label>
+                  <input class="col-9" name="passwords[old]" type="password">
+                  <label class="col-6">New Password</label>
+                  <input class="col-9" name="passwords[new]" type="password">
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                  <button type="submit" class="btn ">Change Password</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="modal fade" id="view-rsvp-modal" tabindex="-1" aria-labelledby="rsvp" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">RSVP</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body row">
+                <div id="rsvp-card-landing"></div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">close</button>
+                <!-- this button should toggle us to the update form modal -->
+                <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#rsvp-form-modal"></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        <!-- index rsvps -->
+        <div class="modal fade" id="rsvps" tabindex="-1" aria-labelledby="rsvps" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">RSVP List</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body row">
+                <div id="rsvp-card-landing-index"></div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- RSVP form modal -->
+        <div class="modal fade" id="new-rsvp-form-modal" tabindex="-1" aria-labelledby="rsvp form" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title"> R.S.V.P.</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <form id="new-rsvp">
+                <div class="modal-body row">
+                  <div class="col-9" id="new-rsvp-message-field"></div>
+                  <label class="col-4">Will you be there ?</label>
+                  <select class=" col-4 form-control" id="new-rsvp-attending-selection" type="text" name="rsvp[Attending]">
+                    <option> ---</option>
+                    <option>Delighted to attend</option>
+                    <option>Sorry to miss it</option>
+                  </select>
+                  <label class=" col-9"> Guest's Attending</label>
+                  <input type="text" name="rsvp[names]">
+                  <span>please separate each guest's name with a comma<br> ex: Amanda Kidd Schall, Andrew Kestler</span>
+                  <div class="col-10">
+                    <label for="new-rsvp-notes"> Dietary restrictions and other notes</label>
+                    <textarea class="form-control" id="new-rsvp-notes" rows="2" name="rsvp[notes]"></textarea>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                  <button type="submit" class="btn ">Submit</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      
+        <!-- RSVP UPDATE form modal -->
+        <div class="modal fade" id="update-rsvp-form-modal" tabindex="-1" aria-labelledby="rsvp update form"
+          aria-hidden="true">
+          <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title"> R.S.V.P.</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <form id="update-rsvp">
+                <div class="modal-body row">
+                  <div class="col-9" id="update-rsvp-message-field"></div>
+                  <label class="col-9">Will you be there ?</label>
+                  <select class="form-control" id="update-rsvp-attending-selection" name="rsvp[Attending]">
+                    <option> Delighted to attend</option>
+                    <option>Sorry to miss it</option>
+                  </select>
+                  <div class="col-9" id="update-rsvp-number" name="rsvp[NumberAttending]"></div>
+                  <!-- use pattern attribute here ? -->
+                  <input class="" type="text" name="rsvp[names]" data-bs-toggle="tooltip" data-bs-placement="top"
+                    title="please separate each guest's name with a comma ex: Amanda Kidd Schall, Andrew Kestler">
+                  <div class="col-10">
+                    <label for="update-rsvp-notes"> Dietary restrictions and other notes</label>
+                    <textarea class="form-control col-10" type="text" id="update-rsvp-notes" rows="2" name="rsvp[notes]" ></textarea>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                  <button type="submit" class="btn ">Submit</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      
+        <!-- message modal -->
+        <div class="modal fade" id="user-message-modal" tabindex="-1" aria-labelledby="message modal" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-header">
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <p id="user-message-field"></p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">close</button>
+            </div>
+          </div>
+        </div>
+      
+        <!-- end of modals -->
+      
+        <!-- Landing  -->
+        <container class="pageSection">
+          <div class="row" id="landing-banner">
+      
+          </div>
+          <div class="row" id="landing-photo-row">
+            <div class="col-2"></div>
+            <img class="col img-fluid " src="public/769150640023_21.jpg"
+              alt="Andrew & Amanda at the beach in Maine">
+            <div class="row position-absolute">
+              <div class="col-1 col-md-2"></div>
+              <div class="col text-start text-md-center" id="landing-photo-date">Andrew & Amanda<br>June 17th<br>2022</div>
+              <div class="d-none d-md-inline col-md-2 "></div>
+            </div>
+          </div>
+        </container>
+      
+      
+        <!-- main content container and row-->
+        <container>
+          <div class="row">
+            <div id="venue"></div>
+            <div class="col-12 headerspacer"></div>
+            <!-- dynamic border to left of content -->
+            <div class="col-1 col-md-2 col-xl-3"></div>
+            <!-- center content col -->
+            <div class="col col-xl-6 text-center">
+      
+              <!-- Venue Info  -->
+              <h2 class=" text-decoration-underline"> The Where </h2>
+              <div class="headerspacer"></div>
+              <p> We are starting this new exciting chapter of our lives together with a sea-side ceremony at the Hartley
+                Mason
+                Reserve</p>
+              <img class=" img-fluid" src="public/hmr-woods-pic.jpeg">
+              <div class="picspacer"></div>
+              <p> The reception will be just across the street with a full view of the reserve at the beautiful York Harbor
+                Inn, in York Maine </p>
+              <!-- <img class=" img-fluid" src="./assets/pictures/YHI_Main_Inn_Exterior2-2000-pcx.jpeg" alt="Sunlit York Harbor Inn sign and main building"> -->
+              <div class="picspacer"></div>
+              <p> While 'Inn does have rooms available there is an exhaustive list of options at every price point in the
+                surrounding area. <br> We personally will only be staying the night before and of the event at the Inn, and
+                will be in Dover for the remainder of the weekend. </p>
+              <!-- <p> A quick list of some accommodations in the area</p>
+              <div class="row justify-content-center">
+                <div class="col col-md-2"> link </div>
+                <div class="col col-md-2"> link </div>
+                <div class="col col-md-2"> link </div> -->
+                <!-- v--forces a break in the 'row' grid regardless of col sizes -->
+                <!-- <div class="w-100"></div>
+                <div class="col col-md-2"> link </div>
+                <div class="col col-md-2"> link </div>
+                <div class="col col-md-2"> link </div>
+              </div> -->
+      
+              <!-- program -->
+              <div></div>
+              <div class="headerspacer" id="program"></div>
+              <h2 class="text-center">Day of Details</h2>
+              <div class="headerspacer"></div>
+              <!-- schedule chart -->
+              <div class="row">
+                <div class="col-2"></div>
+                <div class="col">
+                  <div class="row justify-content-center text-center" id="schedule-chart">
+                    <div class="col text-decoration-underline"> A & A <br> wedding schedule</div>
+                    <div class="col-12 gridspacer"></div>
+                    <div class="col-6"> guest arrival</div>
+                    <div class="col-3"> 11:00 </div>
+                    <div class="w-100"></div>
+                    <div class="w-100"></div>
+                    <div class="col-6"> ceremony</div>
+                    <div class="col-3"> 11:30 - 12:00</div>
+                    <div class="w-100"></div>
+                    <div class="w-100"></div>
+                    <div class="col-6"> photos in the park & cocktails</div>
+                    <div class="col-3"> 12:00 - 1:00</div>
+                    <div class="w-100"></div>
+                    <div class="w-100"></div>
+                    <div class="col-6"> reception lunch </div>
+                    <div class="col-3"> 1:00 - 3:00</div>
+                    <div class="w-100"></div>
+                    <div class="w-100"></div>
+                    <div class="col-6"> end of reception </div>
+                    <div class="col-3"> 3:30 </div>
+                    <div class="w-100"></div>
+                    <div class="w-100"></div>
+                    <div class="col-6"> after party in the ship cellar</div>
+                    <div class="col-3"> ~ 6:30 </div>
+                    <div class="w-100"></div>
+                    <div class="col-12 gridspacer"></div>
+                  </div>
+                </div>
+                <div class="col-2"></div>
+              </div>
+      
+              <!-- Activities -->
+              <div class="headerspacer" id="activities"></div>
+              <h2> Other weekend activities</h2>
+              <div class="headerspacer"></div>
+              <p> coming soon </p>
+      
+              <!-- RSVP Form -->
+              <!-- <div class="headerspacer" id="rsvp"></div>
+              <h2 > RSVP form</h2>
+              <div class="headerspacer"></div>
+              <p> coming soon </p> -->
+      
+              <!-- Registry Info -->
+              <div class="headerspacer" id="registry"></div>
+              <h2> Registry Information</h2>
+              <div class="headerspacer"></div>
+              <p> coming soon </p>
+      
+      
+      
+            </div>
+            <!-- dynamic border to right of content -->
+            <div class="col-1 col-md-2 col-xl-3"></div>
+          </div>
+        </container>
+      
+        <footer class="text-center"> 2021-2022, Developed by Andrew Kestler @ kestler.andrew@gmail.com </footer>
+  </body>
+</html>
