@@ -56,16 +56,16 @@
                 <h5 class="modal-title">Make an Account</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
-              <form id="my-sign-up" autocomplete="off">
+              <form id="my-sign-up" >
                 <div class="modal-body">
                   <div id="sign-up-form-message"></div>
                   <div class="container row">
                     <label class="col-4">Email</label>
-                    <input class="col-9" name="credentials[email]" type="email">
+                    <input class="col-9" name="credentials[email]" type="email" autocomplete="off">
                     <label class="col-4">Password</label>
-                    <input class="col-9" name="credentials[password]" type="password">
+                    <input class="col-9" name="credentials[password]" type="password" autocomplete="off">
                     <label class="col-6">Confirm Password</label>
-                    <input class="col-9" name="credentials[password_confirmation]" type="password">
+                    <input class="col-9" name="credentials[password_confirmation]" type="password" autocomplete="off">
                   </div>
                 </div>
                 <div class="modal-footer">
@@ -91,9 +91,9 @@
                 <div class="modal-body">
                   <div class="container row">
                     <label class="col-4 ">Email</label>
-                    <input class="col-9 " name="credentials[email]" type="email">
+                    <input class="col-9 " name="credentials[email]" type="email" autocomplete="off">
                     <label class="col-4 ">Password</label>
-                    <input class="col-9 " name="credentials[password]" type="password">
+                    <input class="col-9 " name="credentials[password]" type="password" autocomplete="off">
                   </div>
                 </div>
                 <div class="modal-footer">
@@ -116,9 +116,9 @@
                 <div class="modal-body row">
                   <div class="col-9" id="pw-change-message-field"></div>
                   <label class="col-6">Old Password</label>
-                  <input class="col-9" name="passwords[old]" type="password">
+                  <input class="col-9" name="passwords[old]" type="password" autocomplete="off">
                   <label class="col-6">New Password</label>
-                  <input class="col-9" name="passwords[new]" type="password">
+                  <input class="col-9" name="passwords[new]" type="password" autocomplete="off">
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
