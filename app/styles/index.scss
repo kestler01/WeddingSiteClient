@@ -1,11 +1,4 @@
 @import '~bootstrap/scss/bootstrap';
-/* #a6bb9b martha stewart green goodness */
-/* rgba(212,	175,	55, 1); gold */
-/* $sunglow: rgba(255, 200, 71, 1);
-$midnight-green-eagle-green: rgba(15, 82, 87, 1);
-$glaucous: rgba(108, 128, 239, 1);
-$alice-blue: rgba(241, 243, 249, 1);
-$turquoise-green: rgba(155, 212, 165, 1); */
 
 body{
   font-family:Poiret One ;
@@ -13,10 +6,8 @@ body{
 }
 
 .card{
-  background-color: rgb(80, 140, 186);
+  background-color: rgb(115, 157, 189);
 }
-
-
 
 .startHidden{
   display:none
@@ -50,9 +41,6 @@ body{
   font-size: 100 px;
 }
 #landing-photo-date{
-  /* position: absolute; */
-  /* z-index: 2; */
-  /* text-align: start; */
   text-align: center;
   font-size: 2rem;
   font-weight: bold;
