@@ -13,9 +13,11 @@ const drawRsvpCard = function(rsvp, index) {
   // in index success we dont have to provide second arg
   let size = 10
   let target = 'rsvp-card-landing'
+  let noteTitle = `Dietary restrictions and other notes`
   if (index){
     target = 'rsvp-card-landing-index'
     size = 4
+    noteTitle = `Notes`
   }
   // 'Delighted to attend' || 'Sorry to miss it'
   let attendText = 'Delighted to attend'
@@ -29,12 +31,12 @@ const drawRsvpCard = function(rsvp, index) {
     <div class="card">
       <div class="card-body">
         <div class="row justify-content-center text-center"">
-          <h2 class="col-10 card-title"> A|A </h2>
+          <h2 class="col-10 card-title text-decoration-bold"> A|A </h2>
           <h5 class="text-decoration-underline"> Guests </h5>
           <p class="card-text rsvp-card-text rsvp-Names">${Names.join()}</p>
           <h5 class="text-decoration-underline"> replied: </h5>
           <p class="card-text rsvp-card-text rsvp-Attending-text"=> ${attendText}</p>
-          <h5 class="text-decoration-underline"> Dietary restrictions and other notes </h5>
+          <h5 class="text-decoration-underline"> ${noteTitle} </h5>
           <p class="card-text rsvp-card-text rsvp-Notes-text"> ${Notes}</p>
         </div>
       </div>
@@ -102,6 +104,8 @@ const onSignOutSuccess = function () {
   $('#change-password').trigger('reset')
   $('#sign-up').trigger('reset')
   $('#sign-in').trigger('reset')
+  $('#sign-in-form-message').text('')
+  $('#sign-up-form-message').text('')
   store={}
 }
 const onSignOutFailure = function () {
