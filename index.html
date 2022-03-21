@@ -128,9 +128,10 @@
             </div>
           </div>
         </div>
+        <!-- view my RSVP modal -->
         <div class="modal fade" id="view-rsvp-modal" tabindex="-1" aria-labelledby="rsvp" aria-hidden="true">
           <div class="modal-dialog modal-dialog-scrollable">
-            <div class="modal-content">
+            <div class="modal-content justify-content-center text-center">
               <div class="modal-header">
                 <h5 class="modal-title">RSVP</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -139,24 +140,23 @@
                 <div id="rsvp-card-landing"></div>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">close</button>
-                <!-- this button should toggle us to the update form modal -->
-                <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#rsvp-form-modal"></button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">close</button>
+                <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-dismiss="modal" data-bs-target="#update-rsvp-form-modal">change RSVP</button>
               </div>
             </div>
           </div>
         </div>
       
         <!-- index rsvps -->
-        <div class="modal fade" id="rsvps" tabindex="-1" aria-labelledby="rsvps" aria-hidden="true">
+        <div class="modal fade" id="view-rsvps-modal" tabindex="-1" aria-labelledby="rsvps" aria-hidden="true">
           <div class="modal-dialog modal-dialog-scrollable">
             <div class="modal-content">
               <div class="modal-header">
                 <h5 class="modal-title">RSVP List</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
-              <div class="modal-body row">
-                <div id="rsvp-card-landing-index"></div>
+              <div class="modal-body">
+                <div id="rsvp-card-landing-index" class="row"></div>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">close</button>
@@ -164,6 +164,7 @@
             </div>
           </div>
         </div>
+
         <!-- RSVP form modal -->
         <div class="modal fade" id="new-rsvp-form-modal" tabindex="-1" aria-labelledby="rsvp form" aria-hidden="true">
           <div class="modal-dialog modal-dialog-scrollable">
@@ -211,7 +212,7 @@
                 <div class="modal-body row">
                   <div class="col-9" id="update-rsvp-message-field"></div>
                   <label class="col-9">Will you be there ?</label>
-                  <select class="form-control" id="update-rsvp-attending-selection" name="rsvp[Attending]">
+                  <select class="form-control" type="text" id="update-rsvp-attending-selection" name="rsvp[Attending]">
                     <option> Delighted to attend</option>
                     <option>Sorry to miss it</option>
                   </select>

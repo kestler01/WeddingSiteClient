@@ -6,14 +6,28 @@ const getFormFields = require('../lib/get-form-fields.js')
 const store = require('./store.js')
 
 const onSignUp = function (event) {
-	console.log(event)
+	// console.log(event)
 	event.preventDefault()
 	const formDataRaw = event.target
-	console.log("formDataRaw:",formDataRaw) // dev log
+	// console.log("formDataRaw:",formDataRaw) // dev log
 	const formDataObj = getFormFields(formDataRaw)
 	// hardcoded emails for admins (bride and groom) only enables access to rsvp list
-	if(formDataObj.email=== "kestler.andrew@gmail.com" || "amanda@kiddschall.com"){
-		formDataObj.isAdmin=true
+	console.log(formDataObj)
+	console.log(
+		'formDataObj.credentials.email== "kestler.andrew@gmail.com"',
+		formDataObj.credentials.email.valueOf() == 'kestler.andrew@gmail.com'
+	)
+	console.log(
+		'formDataObj.credentials.email== "amanda@kiddschall.com"',
+		formDataObj.credentials.email.valueOf() == 'amanda@kiddschall.com'
+	)
+
+	if (
+		formDataObj.credentials.email.trim().valueOf() == 'kestler.andrew@gmail.com' ||
+		formDataObj.credentials.email.trim().valueOf() == 'amanda@kiddschall.com'
+	) {
+		console.log('admin detected')
+		formDataObj.credentials.isAdmin = true
 	}
 	console.log("formDataObj:", formDataObj) // dev log
 	api.signUp(formDataObj)
@@ -84,23 +98,23 @@ const onNewRsvp = function (event) {
 	console.log( " onNewRsvp the formattedRsvp obj is :", formattedRsvp)
 	store.rsvp = formattedRsvp
 	api
-		.postRsvp(formattedRsvp)
+		.postRsvp({"rsvp":formattedRsvp})
 		.then(ui.onNewRsvpSuccess)
 		.catch(ui.onNewRsvpFailure)
 }
 
 const onViewRsvp = function (event) {
-	event.preventDefault()
+	// event.preventDefault()
 	api.getRsvp()
-		.then(ui.onGetViewRsvpSuccess)
-		.catch(ui.onGetViewRsvpFailure)
+		.then(ui.onGetRsvpSuccess)
+		.catch(ui.onGetRsvpFailure)
 }
 
 const onIndexRsvps = function (event) {
-	event.preventDefault()
+	// event.preventDefault()
 	api.indexRsvps()
-		.then(onIndexRsvpsSuccess)
-		.catch(onIndexRsvpsFailure)
+		.then(ui.onIndexRsvpsSuccess)
+		.catch(ui.onIndexRsvpsFailure)
 }
 
 const onUpdateRsvp = function (event) {
@@ -108,17 +122,19 @@ const onUpdateRsvp = function (event) {
 	const formDataRaw = event.target
 	const formDataObject = getFormFields(formDataRaw)
 	api.updateRsvp(formDataObject)
-		.then(onUpdateRsvpSuccess)
-		.catch(onUpdateRsvpFailure)
+		.then(ui.onUpdateRsvpSuccess)
+		.catch(ui.onUpdateRsvpFailure)
 }
 
-const onDeleteRsvp = function () {
-	api.deleteRsvp()
-		.then(onDeleteRsvpSuccess)
-		.catch(onDeleteRsvpFailure)
-}
+// const onDeleteRsvp = function () {
+// 	api.deleteRsvp()
+// 		.then(ui.onDeleteRsvpSuccess)
+// 		.catch(ui.onDeleteRsvpFailure)
+// }
 
 const onRsvpBtnClick = function () {
+	console.log(store)
+	console.log(store.user.isAdmin)
 	if(store.user.isAdmin=== true){
 		onIndexRsvps()
 	} else if(store.user.isRsvped=== true){
@@ -136,6 +152,6 @@ module.exports = {
 	onViewRsvp,
 	onIndexRsvps,
 	onUpdateRsvp,
-	onDeleteRsvp,
+	// onDeleteRsvp,
 	onRsvpBtnClick,
 }

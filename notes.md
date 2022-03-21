@@ -1,7 +1,5 @@
 ## Updating package.json
 
-At the beginning of each cohort, update the versions in package.json by:
-
 ```sh
 rm -r node_modules
 cp package.json package.json.bak

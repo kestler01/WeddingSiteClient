@@ -6,17 +6,18 @@
 const events = require('./events.js')
 const store = require('./store.js')
 
-let eventFunctionByUserAccessLevel = events.onViewRsvp
-if (store?.user?.isAdmin === true) {
-  eventFunctionByUserAccessLevel = events.onIndexRsvps
-}
+// let eventFunctionByUserAccessLevel = events.onViewRsvp
+// if (store?.user?.isAdmin === true) {
+//   eventFunctionByUserAccessLevel = events.onIndexRsvps
+// }
 
 $(() => {
   $('#my-sign-up').on('submit', events.onSignUp)
   $('#sign-in').on('submit', events.onSignIn)
   $('#change-password').on('submit', events.onChangePw)
   $('#sign-out-button').on('click', events.onSignOut)
-  $('#rsvp').on('submit', eventFunctionByUserAccessLevel)
+  // $('#rsvp').on('submit', eventFunctionByUserAccessLevel)
   $('#new-rsvp-form-modal').on('submit', events.onNewRsvp)
   $('#rsvp-nav-btn').on('click', events.onRsvpBtnClick)
+  $('#update-rsvp').on('submit', events.onUpdateRsvp)
 })

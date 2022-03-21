@@ -43,6 +43,8 @@ const signOut = function () {
 }
 
 const postRsvp = function (dataObj) {
+	// console.log(store.user)
+	// console.log(dataObj)
 	return $.ajax({
 		url: config.apiUrl + '/rsvp',
 		method: 'post',

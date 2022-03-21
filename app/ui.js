@@ -28,13 +28,15 @@ const drawRsvpCard = function(rsvp, index) {
   <div class="col-${size} card-sleeve">
     <div class="card">
       <div class="card-body">
-        <h5 class="card-title"> RSVP </h5>
-        <h3> Guests </h3>
-        <p class="card-text rsvp-Names">${Names.join()}</p>
-        <h3> replied: </h3>
-        <p> ${attendText}</p>
-        <h3> Dietary restrictions and other notes </h3>
-        <p> ${Notes}</p>
+        <div class="row justify-content-center text-center"">
+          <h2 class="col-10 card-title"> A|A </h2>
+          <h5 class="text-decoration-underline"> Guests </h5>
+          <p class="card-text rsvp-card-text rsvp-Names">${Names.join()}</p>
+          <h5 class="text-decoration-underline"> replied: </h5>
+          <p class="card-text rsvp-card-text rsvp-Attending-text"=> ${attendText}</p>
+          <h5 class="text-decoration-underline"> Dietary restrictions and other notes </h5>
+          <p class="card-text rsvp-card-text rsvp-Notes-text"> ${Notes}</p>
+        </div>
       </div>
     </div>
   </div>
@@ -54,6 +56,7 @@ const onSignUpFailure = function () {
 
 
 const onSignInSuccess = function (response) {
+  console.log(response)
 $('#sign-in-form-message').text('')
 $('#sign-up-button').hide()
 $('#sign-in-button').hide()
@@ -96,22 +99,30 @@ const onSignOutSuccess = function () {
 	$('#sign-out-button').hide()
 	$('#change-pw-button').hide()
   $('#rsvp-nav-btn').hide()
-
-  store.user = null // commented out in other project ?
+  $('#change-password').trigger('reset')
+  $('#sign-up').trigger('reset')
+  $('#sign-in').trigger('reset')
+  store={}
 }
 const onSignOutFailure = function () {
   $('#message-field').text('sign out failure')
 }
 
 const onIndexRsvpsSuccess = function (response) {
-  if( response.rsvp.length === 0 || !response.rsvp){
+  console.log('index rsvp success', response)
+  $('#rsvp-card-landing-index').html(' ')
+  if( response.rsvps?.length === 0 || !response.rsvps){
     // if we don't get an rsvp back form the api then nobody has rsvped yet and we should let the user know that instead of thinking something went wrong
     $('#rsvp-card-landing-index').text(
 			"Still waiting for responses, but I'm sure they will be in soon"
 		)
-  } 
-  response.rsvp.forEach(rsvp => drawRsvpCard(rsvp))
+  } else {
+  response.rsvps.forEach(rsvp => drawRsvpCard(rsvp, true))
+  }
+    const myModal = new Modal($('#view-rsvps-modal'))
+		myModal.show()
 }
+
 const onIndexRsvpsFailure = function (response) {
   console.log('Something went wrong with the Index call. The API response was:',response)
 }
@@ -120,9 +131,10 @@ const onNewRsvpSuccess = function (response) {
 
   console.log(response)
   // close api form modal - may close when other opens
-  // const myModal = new Modal($('#new-rsvp-form-modal'))
-	// myModal._hideModal()
-	// $('.modal-backdrop').hide()
+  const myModal = new Modal($('#new-rsvp-form-modal'))
+	myModal._hideModal()
+	$('.modal-backdrop').hide()
+
   drawRsvpCard(store.rsvp, false)
   const nextModal = new Modal($('#view-rsvp-modal'))
   nextModal.show()
@@ -138,23 +150,51 @@ const onNewRsvpFailure = function (response) {
 }
 
 const onGetRsvpSuccess = function (response) {
-  // we got the rsvp, somebody is likely trying to update or double check the details,
-  // lets draw the rsvp card on the view modal and pre fill the update modal (only openable from the view modal)
+	// we got the rsvp, somebody is likely trying to update or double check the details,
+	console.log(response)
+
+	// we need to clean the card-landing off first
+	$('#rsvp-card-landing').html(' ')
+
+  if(store?.rsvp != response.rsvp){
+    store.rsvp = response.rsvp
+  }
+	
+	drawRsvpCard(store.rsvp, false)
+	const myModal = new Modal($('#view-rsvp-modal'))
+	myModal.show()
+	// lets draw the rsvp card on the view modal and pre fill the update modal (only openable from the view modal) ?
 }
 
 const onGetRsvpFailure = function ( response) {
 	// IF user isn't rsvped ( is a field on the user model) then open the new rsvp form modal
+  console.log(response)
+  if(!store.user.isRsvped){
+    const myModal = new Modal($('#new-rsvp-form-modal'))
+    myModal.show()
+    $('#new-rsvp-message-field').text('Please fill out this form to RSVP')
+  }
+  if(store?.rsvp){
+    drawRsvpCard(store.rsvp, false)
+    const myModal = new Modal($('#new-rsvp-form-modal'))
+    myModal.show()
+  }
 	// failed to get the rsvp, oops lets log an error and display it on the view rsvp modal message field
 }
   
 const onUpdateRsvpSuccess = function ( response) {
 	// we've updated the rsvp YAY, lets draw the newest corrected details on the view rsvp modal and show that (and hide the update modal)
+  console.timeLog(response)
 	drawRsvpCard(store.rsvp, false)
 	const myModal = new Modal($('#update-rsvp-form-modal'))
 	myModal._hideModal()
 	$('.modal-backdrop').hide()
+  const nextModal = new Modal($('#view-rsvp-modal'))
+	nextModal.show()
 }
 const onUpdateRsvpFailure = function (response ) {
+  console.log(response)
+  $('#update-rsvp-message-field').text(`I'm sorry, something went wrong. If the issue persists contact Andrew, the server may be down`)
   // theres been a weird error here... lets present an error message to the user on the update form modal and tell them to check the internet connection or contact me
 }
 const onNotRsvped = function () {
