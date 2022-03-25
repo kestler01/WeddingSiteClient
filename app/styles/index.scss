@@ -32,6 +32,7 @@ body{
 .footer{
   background-color: rgba(211,211,214,1)
 }
+
 #landing-photo-date{
   // font-family: 'Nunito Sans', sans-serif;
   font-family:Tangerine,cursive;
@@ -39,6 +40,10 @@ body{
   @media screen and (max-width: 700px){
     font-size:2rem;
   }
+}
+
+.my-link-spacer{
+  padding-top: 3rem;
 }
 
 #beach-row{
