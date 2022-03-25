@@ -183,10 +183,10 @@ const onGetRsvpSuccess = function (response) {
 
 const onGetRsvpFailure = function ( response) {
 	// IF user isn't rsvped ( is a field on the user model) then open the new rsvp form modal
-  console.log('in ui `ongetrsvpfalialure`')
+  // console.log('in ui `ongetrsvpfalialure`')
   if(!store?.user){ // no user yet
     const myModal = new Modal($('#sign-in-form-modal'))
-        $('#sign-in-form-message').text('Please register your email and sign in to RSVP <br> Not registered ? sign up below')
+        $('#sign-in-form-message').text('Please register your email and sign in to RSVP. Not registered ? sign up below')
     myModal.show()
   } else if(!store.user.isRsvped){ // user isn't rsvped
     const myModal = new Modal($('#new-rsvp-form-modal'))

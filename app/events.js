@@ -137,7 +137,7 @@ const onUpdateRsvp = function (event) {
 	}
 	formattedRsvp.Notes = notes
 	formattedRsvp.Names = NamesArray
-	console.log( " onNewRsvp the formattedRsvp obj is :", formattedRsvp)
+	// console.log( " onNewRsvp the formattedRsvp obj is :", formattedRsvp)
 	store.rsvp = formattedRsvp
 	api.updateRsvp({"rsvp":formattedRsvp})
 		.then(ui.onUpdateRsvpSuccess)
@@ -151,20 +151,20 @@ const onUpdateRsvp = function (event) {
 // }
 
 const onRsvpBtnClick = function (e) {
-	console.log('in onrsvpbuttonclick, the event =',e)
-	console.log('store =',store)
-	console.log('!store?.user =', !store?.user)
+	// console.log('in onrsvpbuttonclick, the event =',e)
+	// console.log('store =',store)
+	// console.log('!store?.user =', !store?.user)
 	if(!store?.user){
-		console.log('inside 1st condition of onrsvpbuttonclick')
+		// console.log('inside 1st condition of onrsvpbuttonclick')
 		ui.onGetRsvpFailure()
 	} else if(store.user.isAdmin=== true){
-		console.log('inside 2nd condition of onrsvpbuttonclick')
+		// console.log('inside 2nd condition of onrsvpbuttonclick')
 		onIndexRsvps()
 	} else if(store.user.isRsvped=== true){
-		console.log('inside 3rd condition of onrsvpbuttonclick')
+		// console.log('inside 3rd condition of onrsvpbuttonclick')
 		onViewRsvp()
 	} else if(store.user.isRsvped=== false){
-		console.log('inside 4th condition of onrsvpbuttonclick')
+		// console.log('inside 4th condition of onrsvpbuttonclick')
 		ui.onNotRsvped()
 	}
 }
