@@ -18,15 +18,16 @@ const drawRsvpCard = function(rsvp, index) {
     target = 'rsvp-card-landing-index'
     size = 4
     noteTitle = `Notes`
+  } else {
+  $(`#${target}`).html('') // need clear for update not double drawing
   }
   // 'Delighted to attend' || 'Sorry to miss it'
   let attendText = 'Delighted to attend'
   if(!Attending){
     attendText = 'Sorry to miss it'
   }
-
-  // prepend means that the newest rsvps should be listed at the first, not that it truly matters
-  $(`#${target}`).prepend(`
+		// prepend means that the newest rsvps should be listed at the first, not that it truly matters
+	$(`#${target}`).prepend(`
   <div class="col-${size} card-sleeve">
     <div class="card">
       <div class="card-body">
@@ -64,12 +65,12 @@ $('#sign-up-button').hide()
 $('#sign-in-button').hide()
 $('#sign-out-button').show()
 $('#change-pw-button').show()
-$('#rsvp-nav-btn').show()
+// $('#rsvp-nav-btn').show()
 $('#sign-up-button-div').hide()
 $('#sign-in-button-div').hide()
 $('#sign-out-button-div').show()
 $('#change-pw-button-div').show()
-$('#rsvp-nav-btn-div').show()
+// $('#rsvp-nav-btn-div').show()
 $('#sign-in').trigger('reset')
 $('#sign-in-form-message').text('sign in successful')
 store.user = response.user
@@ -105,12 +106,12 @@ const onSignOutSuccess = function () {
 	$('#sign-in-button').show()
 	$('#sign-out-button').hide()
 	$('#change-pw-button').hide()
-  $('#rsvp-nav-btn').hide()
+  // $('#rsvp-nav-btn').hide()
   $('#sign-up-button-div').show()
 	$('#sign-in-button-div').show()
 	$('#sign-out-button-div').hide()
 	$('#change-pw-button-div').hide()
-  $('#rsvp-nav-btn-div').hide()
+  // $('#rsvp-nav-btn-div').hide()
   $('#change-password').trigger('reset')
   $('#sign-up').trigger('reset')
   $('#sign-in').trigger('reset')
@@ -182,23 +183,27 @@ const onGetRsvpSuccess = function (response) {
 
 const onGetRsvpFailure = function ( response) {
 	// IF user isn't rsvped ( is a field on the user model) then open the new rsvp form modal
-  console.log(response)
-  if(!store.user.isRsvped){
+  console.log('in ui `ongetrsvpfalialure`')
+  if(!store?.user){ // no user yet
+    const myModal = new Modal($('#sign-in-form-modal'))
+        $('#sign-in-form-message').text('Please register your email and sign in to RSVP <br> Not registered ? sign up below')
+    myModal.show()
+  } else if(!store.user.isRsvped){ // user isn't rsvped
     const myModal = new Modal($('#new-rsvp-form-modal'))
     myModal.show()
     $('#new-rsvp-message-field').text('Please fill out this form to RSVP')
-  }
-  if(store?.rsvp){
+  } else if(store?.rsvp){// theres a stored rsvp
     drawRsvpCard(store.rsvp, false)
     const myModal = new Modal($('#new-rsvp-form-modal'))
     myModal.show()
+  } else { // if there IS a user, Who is RSVPED, and No rsvp in store, then something odd is going on - look at serve response 
+    console.log(response)
   }
-	// failed to get the rsvp, oops lets log an error and display it on the view rsvp modal message field
 }
   
 const onUpdateRsvpSuccess = function ( response) {
 	// we've updated the rsvp YAY, lets draw the newest corrected details on the view rsvp modal and show that (and hide the update modal)
-  console.timeLog(response)
+  // console.log(response)
 	drawRsvpCard(store.rsvp, false)
 	const myModal = new Modal($('#update-rsvp-form-modal'))
 	myModal._hideModal()

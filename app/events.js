@@ -121,7 +121,25 @@ const onUpdateRsvp = function (event) {
 	event.preventDefault()
 	const formDataRaw = event.target
 	const formDataObject = getFormFields(formDataRaw)
-	api.updateRsvp(formDataObject)
+	const { Attending, names, notes } = formDataObject.rsvp
+	// initialize  new object we will format to match API requirements
+	// see WeddingSiteAPI/app/models/rsvp.js
+	let formattedRsvp = {}
+	// split the names into an array so we can count them+ have correct data type
+	let NamesArray = names.split(',')
+	// interpret test to bool value
+	if (Attending === 'Delighted to attend') {
+		formattedRsvp.Attending = true
+		formattedRsvp.NumberAttending = NamesArray.length
+	} else {
+		formattedRsvp.Attending = false
+		formattedRsvp.NumberAttending = 0
+	}
+	formattedRsvp.Notes = notes
+	formattedRsvp.Names = NamesArray
+	console.log( " onNewRsvp the formattedRsvp obj is :", formattedRsvp)
+	store.rsvp = formattedRsvp
+	api.updateRsvp({"rsvp":formattedRsvp})
 		.then(ui.onUpdateRsvpSuccess)
 		.catch(ui.onUpdateRsvpFailure)
 }
@@ -132,14 +150,21 @@ const onUpdateRsvp = function (event) {
 // 		.catch(ui.onDeleteRsvpFailure)
 // }
 
-const onRsvpBtnClick = function () {
-	// console.log(store)
-	// console.log(store.user.isAdmin)
-	if(store.user.isAdmin=== true){
+const onRsvpBtnClick = function (e) {
+	console.log('in onrsvpbuttonclick, the event =',e)
+	console.log('store =',store)
+	console.log('!store?.user =', !store?.user)
+	if(!store?.user){
+		console.log('inside 1st condition of onrsvpbuttonclick')
+		ui.onGetRsvpFailure()
+	} else if(store.user.isAdmin=== true){
+		console.log('inside 2nd condition of onrsvpbuttonclick')
 		onIndexRsvps()
 	} else if(store.user.isRsvped=== true){
+		console.log('inside 3rd condition of onrsvpbuttonclick')
 		onViewRsvp()
 	} else if(store.user.isRsvped=== false){
+		console.log('inside 4th condition of onrsvpbuttonclick')
 		ui.onNotRsvped()
 	}
 }

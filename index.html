@@ -14,14 +14,6 @@
       <link
         href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300&family=Poiret+One&family=Tangerine&display=swap"
         rel="stylesheet">
-      <script>
-        let bannerText= "Andrew & Amanda < br > June 17th, 2022"
-        if ($(window).width() <= 700) {
-          bannerText= "Andrew & Amanda < br > June 17th,< br > 2022"
-        }
-        $("#landing-photo-date").text(bannerText)
-        // console.log(bannerText)
-      </script>
     </head>
     <body>
         <!-- Navbar -->
@@ -40,15 +32,15 @@
 
             <a class="nav-item nav-link disabled" href="#activities">While You're Here</a>
             <!-- button for opening account form modal -->
-            <div class="nav-item nav-link " id="sign-un-button-div">
+            <!-- <div class="nav-item nav-link " id="sign-un-button-div">
             <button type="button" id="sign-up-button" class=" btn nav-button" data-bs-toggle="modal" data-bs-target="#sign-up-form-modal">Sign Up</button>
-            </div>
+            </div> -->
       
             <!-- button for opening sign in form modal -->
-            <div class="nav-item nav-link" id="sign-in-button-div">
+            <!-- <div class="nav-item nav-link" id="sign-in-button-div">
             <button type="button" id="sign-in-button" class="btn nav-item nav-button" data-bs-toggle="modal"
               data-bs-target="#sign-in-form-modal"> Sign In</button>
-            </div>
+            </div> -->
             <!-- button for opening password change form modal -->
             <div class="nav-item nav-link startHidden" id="change-pw-button-div">
             <button type="button" id="change-pw-button" class="btn startHidden nav-item nav-button" data-bs-toggle="modal"
@@ -59,9 +51,11 @@
             <button id="sign-out-button" class="btn startHidden nav-item nav-button">Sign Out</button>
             </div>
             <!-- rsvp button -->
-            <div class="nav-item nav-link startHidden" id="rsvp-nav-btn-div">
-            <button id="rsvp-nav-btn" class="btn startHidden nav-item nav-button" data-bs-toggle="modal" data-bs-target="#rsvp-form-modal">RSVP</button>
+            <div class="nav-item nav-link" id="rsvp-nav-btn-div">
+            <button id="rsvp-nav-btn" class="btn nav-item nav-button" >RSVP</button>
             </div>
+
+            <!-- data-bs-toggle="modal" data-bs-target="#rsvp-form-modal" -->
             
           </div>
         </nav>
@@ -115,7 +109,10 @@
                     <input class="col-9 " name="credentials[password]" type="password" autocomplete="off">
                   </div>
                 </div>
+                
                 <div class="modal-footer">
+                  <button id="sign-in-form-sing-in-link" class="btn" data-bs-target="#sign-up-form-modal" data-bs-toggle="modal"
+                    data-bs-dismiss="modal">Sign Up</button>
                   <button type="submit" class="btn" data-dismiss="modal">Sign In</button>
                 </div>
               </form>
@@ -347,10 +344,14 @@
               <h2> Registry</h2>
               <div class="headerspacer"></div>
               
-              <p style="font-style:italic"> more info coming soon </p>
-
+              <p> We have decided our dream honeymoon is a stint in Europe! Our plan is to spend a few days walking the museums and art galleries of Paris before heading to Italy to soak up some sun ☀️! We have our eyes set on Naples and the nearby Amalfi Coast.<br><br> It is by no means necessary but if you would like to contribute to our 'honey pot' please feel free to follow the link on the navbar or below. <br> Every bit helps and thank you so much for being a part of our journey.<br> We can't wait to see you in June! </p>
+              <button class="registry-link-button">
+              <a class="nav-item nav-link text-decoration-none"
+                href="https://withjoy.com/amanda-and-andrew-cl15t3bwy001707c439c4irab/registry" target="_blank">Registry</a>
+              </button>
               <div class="headerspacer"></div>
-            
+              <a class="nav-item nav-link text-decoration-none" aria-current="page" href="#">Back to Top</a>
+              <div class="headerspacer"></div>
             </div>
             <!-- dynamic border to right of content -->
             <div class="col-1 col-md-2 col-xl-3 my-margin-col"></div>

@@ -65,7 +65,7 @@ const getRsvp = function () {
 	})
 }
 
-const updateRsvp = function () {
+const updateRsvp = function (dataObj) {
 	return $.ajax({
 		url: config.apiUrl + '/rsvp',
 		method: 'patch',
