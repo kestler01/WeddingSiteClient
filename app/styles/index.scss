@@ -1,8 +1,59 @@
 @import '~bootstrap/scss/bootstrap';
 
+  // background-color: rgba(241, 243, 249, 1)
+
+// font-family: 'Nunito Sans', sans-serif;
+// font-family: 'Poiret One', cursive;
+// font-family: 'Tangerine', cursive;
+
+// rgb(134,147,147)
 body{
   font-family:Poiret One ;
-  background-color: rgba(241, 243, 249, 1);
+  font-size: large;
+  background-color: rgb(171, 187, 187);
+}
+
+.main-content{
+  font-size: 2rem;
+  @media screen and (max-width: 700px){
+    font-size:1.2rem;
+  }
+}
+
+// .my-content-col{
+//   border-right-style:double;
+//   border-left-style:double;
+//   border-width: 6px;
+//   border-color: rgb(62, 62, 62);
+// }
+// .my-margin-col{
+//   background-color: rgba(211,211,214,1)
+// }
+.footer{
+  background-color: rgba(211,211,214,1)
+}
+#landing-photo-date{
+  // font-family: 'Nunito Sans', sans-serif;
+  font-family:Tangerine,cursive;
+  font-size: 3.5rem;
+  @media screen and (max-width: 700px){
+    font-size:2rem;
+  }
+}
+
+#beach-row{
+  margin:0 ;
+  padding:0;
+}
+
+.margin-right-fix{
+  margin-right: 0;
+  padding-right: 0;
+}
+
+#beach-pic{
+  margin:0 ;
+  padding:0;
 }
 
 .card{
@@ -13,10 +64,15 @@ body{
   display:none
 }
 
+
 .nav-item{
   
   color:rgb(42, 34, 87);
   text-align: center;
+}
+
+.nav-button{
+
 }
 
 .my-nav{
@@ -36,17 +92,17 @@ body{
 }
 
 #landing-banner{
-  font-family:Tangerine;
+  font-family:Tangerine,cursive;
   color: black;
   font-size: 100 px;
 }
-#landing-photo-date{
-  text-align: center;
-  font-size: 2rem;
-  font-weight: bold;
-}
+// #landing-photo-date{
+//   text-align: center;
+//   font-size: 2rem;
+//   font-weight: bold;
+// }
 #schedule-chart{
-  background-color: rgb(213, 205, 192);
+  background-color: rgb(244, 241, 228);
 }
 .gridspacer{
   min-height: 4rem;
