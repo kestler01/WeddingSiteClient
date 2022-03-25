@@ -58,7 +58,7 @@ const onSignUpFailure = function () {
 
 
 const onSignInSuccess = function (response) {
-  console.log(response)
+  // console.log(response)
 $('#sign-in-form-message').text('')
 $('#sign-up-button').hide()
 $('#sign-in-button').hide()
@@ -123,7 +123,7 @@ const onSignOutFailure = function () {
 }
 
 const onIndexRsvpsSuccess = function (response) {
-  console.log('index rsvp success', response)
+  // console.log('index rsvp success', response)
   $('#rsvp-card-landing-index').html(' ')
   if( response.rsvps?.length === 0 || !response.rsvps){
     // if we don't get an rsvp back form the api then nobody has rsvped yet and we should let the user know that instead of thinking something went wrong
@@ -143,7 +143,7 @@ const onIndexRsvpsFailure = function (response) {
 
 const onNewRsvpSuccess = function (response) {
 
-  console.log(response)
+  // console.log(response)
   // close api form modal - may close when other opens
   const myModal = new Modal($('#new-rsvp-form-modal'))
 	myModal._hideModal()
@@ -165,7 +165,7 @@ const onNewRsvpFailure = function (response) {
 
 const onGetRsvpSuccess = function (response) {
 	// we got the rsvp, somebody is likely trying to update or double check the details,
-	console.log(response)
+	// console.log(response)
 
 	// we need to clean the card-landing off first
 	$('#rsvp-card-landing').html(' ')
@@ -215,10 +215,10 @@ const onNotRsvped = function () {
   const myModal = new Modal(
 		document.getElementById('new-rsvp-form-modal')
 	)
-	console.log(
-		'in onNotRsvped from onRsvpBtnClick-and user.isRsvped=== false, myModal:',
-		myModal
-	)
+	// console.log(
+	// 	'in onNotRsvped from onRsvpBtnClick-and user.isRsvped=== false, myModal:',
+	// 	myModal
+	// )
 	// trigger the new-rsvp-form-modal
 	myModal.show()
 }

@@ -12,24 +12,24 @@ const onSignUp = function (event) {
 	// console.log("formDataRaw:",formDataRaw) // dev log
 	const formDataObj = getFormFields(formDataRaw)
 	// hardcoded emails for admins (bride and groom) only enables access to rsvp list
-	console.log(formDataObj)
-	console.log(
-		'formDataObj.credentials.email== "kestler.andrew@gmail.com"',
-		formDataObj.credentials.email.valueOf() == 'kestler.andrew@gmail.com'
-	)
-	console.log(
-		'formDataObj.credentials.email== "amanda@kiddschall.com"',
-		formDataObj.credentials.email.valueOf() == 'amanda@kiddschall.com'
-	)
+	// console.log(formDataObj)
+	// console.log(
+	// 	'formDataObj.credentials.email== "kestler.andrew@gmail.com"',
+	// 	formDataObj.credentials.email.valueOf() == 'kestler.andrew@gmail.com'
+	// )
+	// console.log(
+	// 	'formDataObj.credentials.email== "amanda@kiddschall.com"',
+	// 	formDataObj.credentials.email.valueOf() == 'amanda@kiddschall.com'
+	// )
 
 	if (
 		formDataObj.credentials.email.trim().valueOf() == 'kestler.andrew@gmail.com' ||
 		formDataObj.credentials.email.trim().valueOf() == 'amanda@kiddschall.com'
 	) {
-		console.log('admin detected')
+		// console.log('admin detected')
 		formDataObj.credentials.isAdmin = true
 	}
-	console.log("formDataObj:", formDataObj) // dev log
+	// console.log("formDataObj:", formDataObj) // dev log
 	api.signUp(formDataObj)
 		.then(ui.onSignUpSuccess)
 		.catch(ui.onSignUpFailure)
@@ -77,7 +77,7 @@ const onNewRsvp = function (event) {
 	event.preventDefault()
 	const formDataRaw = event.target
 	const formDataObject = getFormFields(formDataRaw)
-	console.log(formDataObject)
+	// console.log(formDataObject)
 	// destructure out data collected from form
 	const { Attending, names, notes} = formDataObject.rsvp
 	// initialize  new object we will format to match API requirements 
@@ -95,7 +95,7 @@ const onNewRsvp = function (event) {
 	}
 	formattedRsvp.Notes = notes
 	formattedRsvp.Names = NamesArray
-	console.log( " onNewRsvp the formattedRsvp obj is :", formattedRsvp)
+	// console.log( " onNewRsvp the formattedRsvp obj is :", formattedRsvp)
 	store.rsvp = formattedRsvp
 	api
 		.postRsvp({"rsvp":formattedRsvp})
@@ -133,8 +133,8 @@ const onUpdateRsvp = function (event) {
 // }
 
 const onRsvpBtnClick = function () {
-	console.log(store)
-	console.log(store.user.isAdmin)
+	// console.log(store)
+	// console.log(store.user.isAdmin)
 	if(store.user.isAdmin=== true){
 		onIndexRsvps()
 	} else if(store.user.isRsvped=== true){

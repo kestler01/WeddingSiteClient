@@ -1,12 +1,9 @@
 @import '~bootstrap/scss/bootstrap';
 
-  // background-color: rgba(241, 243, 249, 1)
-
 // font-family: 'Nunito Sans', sans-serif;
 // font-family: 'Poiret One', cursive;
 // font-family: 'Tangerine', cursive;
 
-// rgb(134,147,147)
 body{
   font-family:Poiret One ;
   font-size: large;
@@ -20,21 +17,11 @@ body{
   }
 }
 
-// .my-content-col{
-//   border-right-style:double;
-//   border-left-style:double;
-//   border-width: 6px;
-//   border-color: rgb(62, 62, 62);
-// }
-// .my-margin-col{
-//   background-color: rgba(211,211,214,1)
-// }
 .footer{
   background-color: rgba(211,211,214,1)
 }
 
 #landing-photo-date{
-  // font-family: 'Nunito Sans', sans-serif;
   font-family:Tangerine,cursive;
   font-size: 3.5rem;
   @media screen and (max-width: 700px){
@@ -101,11 +88,7 @@ body{
   color: black;
   font-size: 100 px;
 }
-// #landing-photo-date{
-//   text-align: center;
-//   font-size: 2rem;
-//   font-weight: bold;
-// }
+
 #schedule-chart{
   background-color: rgb(244, 241, 228);
 }
