@@ -4,7 +4,6 @@
 const store = require('./store.js')
 // https://git.generalassemb.ly/ga-wdi-boston/browser-template/issues/185
 const Modal = require('bootstrap').Modal
-
 // function to use to generate rsvp cards form api response, 
 // index arg expects a bool, determines where we draw
 const drawRsvpCard = function(rsvp, index) {
@@ -51,7 +50,7 @@ const onSignUpSuccess = function () {
   $('#sign-up').trigger('reset')
   $('#sign-up-form-message').text('sign up successful, log in to continue')
   $('#sign-up-flip-in-button').show()
-  $('#sign-up-flip-button').hide()
+  // $('#sign-up-flip-button').hide()
 }
 const onSignUpFailure = function () {
   $('#sign-up-form-message').text('sign up failed, you may already have signed up using this email. If issues continue please get in touch with Andrew at kestler.andrew@gmail.com')
@@ -59,25 +58,27 @@ const onSignUpFailure = function () {
 
 
 const onSignInSuccess = function (response) {
-  // console.log(response)
-$('#sign-in-form-message').text('')
-$('#sign-up-button').hide()
-$('#sign-in-button').hide()
-$('#sign-out-button').show()
-$('#change-pw-button').show()
-// $('#rsvp-nav-btn').show()
-$('#sign-up-button-div').hide()
-$('#sign-in-button-div').hide()
-$('#sign-out-button-div').show()
-$('#change-pw-button-div').show()
-// $('#rsvp-nav-btn-div').show()
-$('#sign-in').trigger('reset')
-$('#sign-in-form-message').text('sign in successful')
-store.user = response.user
-const myModal = new Modal($('#sign-in-form-modal'))
-myModal._hideModal()
-$('.modal-backdrop').hide() 
-// jank alternative close because Bootstrap 5 is very particular
+	// console.log(response)
+	$('#sign-in-form-message').text('')
+	$('#sign-up-button').hide()
+	$('#sign-in-button').hide()
+	$('#sign-out-button').show()
+	$('#change-pw-button').show()
+	// $('#rsvp-nav-btn').show()
+	$('#sign-up-button-div').hide()
+	$('#sign-in-button-div').hide()
+	$('#sign-out-button-div').show()
+	$('#change-pw-button-div').show()
+	// $('#rsvp-nav-btn-div').show()
+	$('#sign-in').trigger('reset')
+	$('#sign-in-form-message').text('sign in successful')
+	store.user = response.user
+	const myModal = new Modal($('#sign-in-form-modal'))
+  console.log(myModal)
+	myModal._hideModal()
+	$('.modal-backdrop').hide()
+	$('#rsvp-nav-btn').trigger( "click" )
+
 }
 
 const onNotSignedIn = function () {
@@ -117,7 +118,9 @@ const onSignOutSuccess = function () {
   $('#sign-in').trigger('reset')
   $('#sign-in-form-message').text('')
   $('#sign-up-form-message').text('')
-  store={}
+  store.user = null
+  store.rsvp = null
+  console.log(store)
 }
 const onSignOutFailure = function () {
   $('#message-field').text('sign out failure')
@@ -186,7 +189,7 @@ const onGetRsvpFailure = function ( response) {
   // console.log('in ui `ongetrsvpfalialure`')
   if(!store?.user){ // no user yet
     const myModal = new Modal($('#sign-in-form-modal'))
-        $('#sign-in-form-message').text('Please register your email and sign in to RSVP. Not registered ? sign up below')
+        $('#sign-in-form-message').html('Please sign in to RSVP.<br>Not registered ? Click the sign up button below')
     myModal.show()
   } else if(!store.user.isRsvped){ // user isn't rsvped
     const myModal = new Modal($('#new-rsvp-form-modal'))
