@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <title>A|A</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+
+      <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
+      <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
+
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300&family=Poiret+One&family=Tangerine&display=swap"
+        rel="stylesheet">
+    </head>
+    <body>
+        <!-- Navbar -->
+        <nav class="navbar-nav nav-fill navbar-expand-md sticky-top justify-content-center my-nav margin-right-fix">
+          <button class="nav-item navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation"> A&A </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <!-- <a class="nav-item nav-link active d-none d-md-inline-flex" aria-current="page" href="#">A & A</a> -->
+            <a class="nav-item nav-link active d-md-none" aria-current="page" href="#">Top of page</a>
+      
+            <a class="nav-item nav-link " href="#accommodations">Accommodations</a>
+      
+            <a class="nav-item nav-link" href="#program">Program</a>
+            
+            <a class="nav-item nav-link text-decoration-none" href="https://withjoy.com/amanda-and-andrew-cl15t3bwy001707c439c4irab/registry" target="_blank">Registry</a>
+
+            <a class="nav-item nav-link disabled" href="#activities">While You're Here</a>
+            <!-- button for opening account form modal -->
+            <!-- <div class="nav-item nav-link " id="sign-un-button-div">
+            <button type="button" id="sign-up-button" class=" btn nav-button" data-bs-toggle="modal" data-bs-target="#sign-up-form-modal">Sign Up</button>
+            </div> -->
+      
+            <!-- button for opening sign in form modal -->
+            <!-- <div class="nav-item nav-link" id="sign-in-button-div">
+            <button type="button" id="sign-in-button" class="btn nav-item nav-button" data-bs-toggle="modal"
+              data-bs-target="#sign-in-form-modal"> Sign In</button>
+            </div> -->
+            <!-- button for opening password change form modal -->
+            <div class="nav-item nav-link startHidden" id="change-pw-button-div">
+            <button type="button" id="change-pw-button" class="btn startHidden nav-item nav-button" data-bs-toggle="modal"
+              data-bs-target="#pw-change-form-modal"> Change Password</button>
+            </div>
+            <!-- Sign out button -->
+            <div class="nav-item nav-link startHidden" id="sign-out-button-div">
+            <button id="sign-out-button" class="btn startHidden nav-item nav-button">Sign Out</button>
+            </div>
+            <!-- rsvp button -->
+            <div class="nav-item nav-link" id="rsvp-nav-btn-div">
+            <button id="rsvp-nav-btn" class="btn nav-item nav-button" >RSVP</button>
+            </div>
+
+            <!-- data-bs-toggle="modal" data-bs-target="#rsvp-form-modal" -->
+            
+          </div>
+        </nav>
+        <!-- modals -->
+        <!-- sign up form modal -->
+        <div class="modal fade" id="sign-up-form-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+          aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Make an Account</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <form id="my-sign-up" >
+                <div class="modal-body">
+                  <div id="sign-up-form-message"></div>
+                  <div class="container row">
+                    <label class="col-4">Email</label>
+                    <input class="col-9" name="credentials[email]" type="email" autocomplete="off">
+                    <label class="col-4">Password</label>
+                    <input class="col-9" name="credentials[password]" type="password" autocomplete="off">
+                    <label class="col-6">Confirm Password</label>
+                    <input class="col-9" name="credentials[password_confirmation]" type="password" autocomplete="off">
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="submit" id="sign-up-flip-button" class="btn ">Sign Up</button>
+                  <button id="sign-up-flip-in-button" class="btn startHidden" data-bs-target="#sign-in-form-modal"
+                    data-bs-toggle="modal" data-bs-dismiss="modal">Sign In</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <!-- sign in form modal -->
+        <div class="modal fade" id="sign-in-form-modal" tabindex="-1"
+          aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Sign In</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <form id="sign-in" autocomplete="off">
+                <p id="sign-in-form-message"></p>
+                <div class="modal-body">
+                  <div class="container row">
+                    <label class="col-4 ">Email</label>
+                    <input class="col-9 " name="credentials[email]" type="email" autocomplete="off">
+                    <label class="col-4 ">Password</label>
+                    <input class="col-9 " name="credentials[password]" type="password" autocomplete="off">
+                  </div>
+                </div>
+                
+                <div class="modal-footer">
+                  <button id="sign-in-form-sing-in-link" class="btn" data-bs-target="#sign-up-form-modal" data-bs-toggle="modal"
+                    data-bs-dismiss="modal">Sign Up</button>
+                  <button type="submit" class="btn" data-dismiss="modal">Sign In</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <!-- change PW form modal -->
+        <div class="modal fade" id="pw-change-form-modal" tabindex="-1" aria-labelledby="change password form"
+          aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Change Password</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <form id="change-password" autocomplete="off">
+                <div class="modal-body row">
+                  <div class="col-9" id="pw-change-message-field"></div>
+                  <label class="col-6">Old Password</label>
+                  <input class="col-9" name="passwords[old]" type="password" autocomplete="off">
+                  <label class="col-6">New Password</label>
+                  <input class="col-9" name="passwords[new]" type="password" autocomplete="off">
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                  <button type="submit" class="btn ">Change Password</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <!-- view my RSVP modal -->
+        <div class="modal fade" id="view-rsvp-modal" tabindex="-1" aria-labelledby="rsvp" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content justify-content-center text-center">
+              <div class="modal-header">
+                <h5 class="modal-title">RSVP</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body row">
+                <div id="rsvp-card-landing"></div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-dismiss="modal" data-bs-target="#update-rsvp-form-modal">Change RSVP</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        <!-- index rsvps -->
+        <div class="modal fade" id="view-rsvps-modal" tabindex="-1" aria-labelledby="rsvps" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">RSVP List</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <div id="rsvp-card-landing-index" class="row"></div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RSVP form modal -->
+        <div class="modal fade" id="new-rsvp-form-modal" tabindex="-1" aria-labelledby="rsvp form" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title"> R.S.V.P.</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <form id="new-rsvp">
+                <div class="modal-body row">
+                  <div class="col-9" id="new-rsvp-message-field"></div>
+                  <label class="col-4">Will you be there ?</label>
+                  <select class=" col-4 form-control" id="new-rsvp-attending-selection" type="text" name="rsvp[Attending]">
+                    <option> ---</option>
+                    <option>Delighted to attend</option>
+                    <option>Sorry to miss it</option>
+                  </select>
+                  <label class=" col-9"> Guest's Attending</label>
+                  <input type="text" name="rsvp[names]">
+                  <span>please separate each guest's name with a comma<br> ex: Amanda Kidd Schall, Andrew Kestler</span>
+                  <div class="col-10">
+                    <label for="new-rsvp-notes"> Dietary restrictions and other notes</label>
+                    <textarea class="form-control" id="new-rsvp-notes" rows="2" name="rsvp[notes]"></textarea>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                  <button type="submit" class="btn ">Submit</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      
+        <!-- RSVP UPDATE form modal -->
+        <div class="modal fade" id="update-rsvp-form-modal" tabindex="-1" aria-labelledby="rsvp update form"
+          aria-hidden="true">
+          <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title"> R.S.V.P.</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <form id="update-rsvp">
+                <div class="modal-body row">
+                  <div class="col-9" id="update-rsvp-message-field"></div>
+                  <label class="col-9">Will you be there ?</label>
+                  <select class="form-control" type="text" id="update-rsvp-attending-selection" name="rsvp[Attending]">
+                    <option> Delighted to attend</option>
+                    <option>Sorry to miss it</option>
+                  </select>
+                  <!-- <div class="col-9" id="update-rsvp-number" name="rsvp[NumberAttending]"></div> -->
+                  <label class="col-9">Guest Names</label>
+                  <input class="" type="text" name="rsvp[names]" data-bs-toggle="tooltip" data-bs-placement="top"
+                    title="please separate each guest's name with a comma ex: Amanda Kidd Schall, Andrew Kestler">
+                  <div class="col-10">
+                    <label for="update-rsvp-notes"> Dietary restrictions and other notes</label>
+                    <textarea class="form-control col-10" type="text" id="update-rsvp-notes" rows="2" name="rsvp[notes]" ></textarea>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                  <button type="submit" class="btn ">Submit</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <!-- end of modals -->
+      
+        <!-- Landing  -->
+        <container class="pageSection">
+          <div class="row" id="landing-banner">
+      
+          </div>
+          <div class="row" id="landing-photo-row">
+            <div class="col-2"></div>
+            <img class="col img-fluid " src="public/769150640023_21.jpg"
+              alt="Andrew & Amanda at the beach in Maine">
+            <div class="row position-absolute">
+              <div class="col-1 col-md-2"></div>
+              <div class="col text-start text-md-center" id="landing-photo-date">Andrew & Amanda<br>June 17th, 2022</div>
+              <div class="d-none d-md-inline col-md-2 "></div>
+            </div>
+          </div>
+        </container>
+      
+      
+        <!-- main content container and row-->
+        <container class="main-content">
+          <div class="row">
+            <div id="venue"></div>
+            
+            <!-- dynamic border to left of content -->
+            <div class="col-1 col-md-2 col-xl-3 my-margin-col"></div>
+            <!-- center content col -->
+              <div class="col col-xl-6 text-center my-content-col">
+                <div class="col-12 headerspacer"></div>
+                <!-- Venue Info  -->
+                <!-- <h2 class=" text-decoration-underline">Where</h2> -->
+                
+                <p> We hope you will join us in starting this exciting new chapter of our lives together with a sea-side ceremony at the Hartley Mason Reserve.</p>
+                <p>After the ceremony we will walk across the street to the <a href="https://www.yorkharborinn.com/" target="_blank" class="text-decoration-none">York Harbor Inn</a> for an afternoon of celebration!</p>
+                
+                <div class="picspacer"></div>
+              </div>
+            <div class="col-1 col-md-2 col-xl-3 my-margin-col"></div>
+          </div>
+          <div id="beach-row" class="row">
+            
+            <img id="beach-pic" class="col img-fluid" src="/public/BWbeachday.jpg">
+            
+          </div>
+            <!-- <div class="picspacer"></div> -->
+          <div class="row">
+
+            <div class="col-1 col-md-2 col-xl-3 my-margin-col"></div>
+
+            <div class="col col-xl-6 text-center my-content-col" id="accommodations">
+              <div class="headerspacer"></div>
+              <p> The <a href="https://www.yorkharborinn.com/" target="_blank" class="text-decoration-none">Inn</a> has some rooms available and there are lots of other places to stay at every price point. We are staying the nights of the 16th and 17th at the Inn.</p>
+              <p> A quick list of some accommodations in the area</p>
+              <div class="row justify-content-center">
+                <a class="col col-md-4 text-decoration-none" target="_blank" href="http://www.bittersweetbednbreakfast.com/index.html" > BitterSweet Bed & Breakfast </a>
+                <a class="col col-md-4 text-decoration-none" target="_blank" href="https://www.airbnb.com/s/homes?adults=2&checkin=2022-06-16&checkout=2022-06-20&tab_id=home_tab&refinement_paths%5B%5D=%2Fhomes&flexible_trip_lengths%5B%5D=weekend_trip&date_picker_type=calendar&ne_lat=43.22022044851288&sw_lat=43.05637760441849&ne_lng=-70.6152641438747&sw_lng=-70.89335557453876&zoom=12&search_by_map=true&search_type=user_map_move" > Airbnb </a>
+                <a class="col col-md-4 text-decoration-none" target="_blank" href="https://beaverdamcampground.com/" > Beaver Damn Campground </a>
+                <!-- v--forces a break in the 'row' grid regardless of col sizes -->
+                <a class="w-100 my-link-spacer"></a>
+                <a class="col col-md-4 text-decoration-none" target="_blank" href="https://tanglewoodhall.com/" > Inn at Tanglewood Hall </a>
+                <a class="col col-md-4 text-decoration-none" target="_blank"
+                  href="https://www.wyndhamhotels.com/days-inn/dover-new-hampshire/days-inn-dover-durham-downtown/overview?iata=00093763&cid=PS:9ts9bxpzq4b30ez&gclid=CjwKCAjwrfCRBhAXEiwAnkmKmSjLo5evBtrXeGSpcpCKjPg2do_TzArydAVVH9PHMboKMcvUrIp5bRoC_PEQAvD_BwE&gclsrc=aw.ds">
+                  Dover Days Inn </a>
+                <a class="col col-md-4 text-decoration-none" target="_blank" href="https://www.sailmakershouse.com/" > Portsmouth Sailmakers House </a>
+                
+              </div>
+              
+            </div>
+              <!-- dynamic border to right of content -->
+            <div class="col-1 col-md-2 col-xl-3 my-margin-col"></div>
+          </div>
+          <div class="row justify-content-center">
+              <!-- program -->
+              <div class="headerspacer" id="program"></div>
+              <h2 class="text-center">Program</h2>
+              <div class="headerspacer"></div>
+              
+              <img id="program-pic" class="col-xxl-9 img-fluid" src="/public/wedding program.jpg">
+          </div>
+          
+          <div class="row">
+            <div class="col-1 col-md-2 col-xl-3 my-margin-col"></div>
+            <div class="col col-xl-6 text-center my-content-col">
+              <!-- Activities -->
+              <div class="headerspacer" id="activities"></div>
+              <h2> While You're Here</h2>
+              <div class="headerspacer"></div>
+              <p style="font-style:italic"> a list of some of our favorite activities and eats <br> coming soon </p>
+
+              <!-- Registry Info -->
+              <div class="headerspacer" id="registry"></div>
+              <h2> Registry</h2>
+              <div class="headerspacer"></div>
+              
+              <p> We have decided our dream honeymoon is a stint in Europe! Our plan is to spend a few days walking the museums and art galleries of Paris before heading to Italy to soak up some sun ☀️! We have our eyes set on Naples and the nearby Amalfi Coast.<br> It is by no means necessary but if you would like to contribute to our 'honey pot' please feel free to follow the link on the navbar or click the button below. <br><br> Thank you so much for being a part of our journey and we can't wait to see you in June! </p>
+              <div class="headerspacer"></div>
+              <button class="registry-link-button">
+              <a class="nav-item nav-link text-decoration-none"
+                href="https://withjoy.com/amanda-and-andrew-cl15t3bwy001707c439c4irab/registry" target="_blank">Registry</a>
+              </button>
+              <div class="headerspacer"></div>
+              <a class="nav-item nav-link text-decoration-none" aria-current="page" href="#">Back to Top</a>
+              <div class="headerspacer"></div>
+            </div>
+            <!-- dynamic border to right of content -->
+            <div class="col-1 col-md-2 col-xl-3 my-margin-col"></div>
+          </div>
+        </container>
+      
+        <footer class="footer text-center"> 2021-2022, Developed by Andrew Kestler @ kestler.andrew@gmail.com </footer>
+  </body>
+</html>

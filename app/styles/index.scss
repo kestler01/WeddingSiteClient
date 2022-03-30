@@ -1,0 +1,110 @@
+@import '~bootstrap/scss/bootstrap';
+
+// font-family: 'Nunito Sans', sans-serif;
+// font-family: 'Poiret One', cursive;
+// font-family: 'Tangerine', cursive;
+
+body{
+  font-family:Poiret One ;
+  font-size: large;
+  background-color: rgb(171, 187, 187);
+}
+
+.main-content{
+  font-size: 2rem;
+  @media screen and (max-width: 700px){
+    font-size:1.2rem;
+  }
+}
+
+.registry-link-button{
+  background-color: rgba(211,211,214,1);
+  border-radius: 1rem;
+  border-style: double;
+  border-width: .5rem;
+}
+
+.footer{
+  background-color: rgba(211,211,214,1)
+}
+
+#landing-photo-date{
+  font-family:Tangerine,cursive;
+  font-size: 3.5rem;
+  @media screen and (max-width: 700px){
+    font-size:2rem;
+  }
+}
+
+.my-link-spacer{
+  padding-top: 3rem;
+}
+
+#beach-row{
+  margin:0 ;
+  padding:0;
+}
+
+.margin-right-fix{
+  margin-right: 0;
+  padding-right: 0;
+}
+
+#beach-pic{
+  margin:0 ;
+  padding:0;
+}
+
+.card{
+  background-color: rgb(115, 157, 189);
+}
+
+.startHidden{
+  display:none
+}
+
+
+.nav-item{
+  
+  color:rgb(42, 34, 87);
+  text-align: center;
+}
+
+.nav-button{
+
+}
+
+.my-nav{
+  background-color: rgba(155, 212, 165, 1);
+}
+
+.pageSection{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.container-fluid {
+    padding-left:0px;
+    padding-right:0px
+}
+
+#landing-banner{
+  font-family:Tangerine,cursive;
+  color: black;
+  font-size: 100 px;
+}
+
+#schedule-chart{
+  background-color: rgb(244, 241, 228);
+}
+.gridspacer{
+  min-height: 4rem;
+}
+.headerspacer{
+  min-height: 4rem;
+}
+.picspacer{
+  min-height: 4rem;
+}
